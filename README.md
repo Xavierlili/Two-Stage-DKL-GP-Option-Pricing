@@ -39,25 +39,24 @@ The architecture leverages:
                     │  IV_hat + features)  │
                     └──────────────────────┘
 
-
-
 A deep neural encoder maps raw features to a latent space where a GP performs regression:
 
-\[
-f(x) = \mathcal{GP}(m(x), k_{\theta}(x, x'))
-\]
+$$
+f(x) = \mathcal{GP}\big(m(x),\, k_\theta(x, x')\big)
+$$
 
 Feature extractor:
 
-\[
+$$
 \phi(x) = \text{MLP}(x)
-\]
+$$
 
-GP operates on \(\phi(x)\):
+GP operates on the extracted features:
 
-\[
+$$
 y = f(\phi(x)) + \epsilon
-\]
+$$
+
 
 ---
 
