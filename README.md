@@ -78,31 +78,29 @@ Avoids look-ahead bias inherent in financial time series.
 ### 🔹 Clean & reproducible code structure
 No Colab noise. Ready for academic or production usage.
 
----
-
 # 📁 Project Structure
 
+```text
 Two-Stage-DKL-GP-Option-Pricing/
 │
 ├── src/
-│ └── iv_dkl_pipeline.py # Main training pipeline
+│   └── iv_dkl_pipeline.py          # Main training pipeline
 │
 ├── data/
-│ └── SPX500.csv # Underlying options dataset (not included)
+│   └── SPX500.csv                  # Underlying options dataset (not included)
 │
 ├── paper/
-│ └── CN39523dissertation.pdf # Full dissertation
+│   └── CN39523dissertation.pdf     # Full dissertation
 │
-├── results/ # Training curves, figures, metrics
+├── results/                        # Training curves, figures, metrics
 │
-├── notebooks/ # (Optional) Colab / Jupyter notebooks
+├── notebooks/                      # (Optional) Colab / Jupyter notebooks
 │
 ├── README.md
 ├── LICENSE
 ├── requirements.txt
 └── .gitignore
 
----
 
 # 🚀 Getting Started
 
