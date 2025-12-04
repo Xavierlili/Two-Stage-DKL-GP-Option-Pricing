@@ -101,7 +101,9 @@ Two-Stage-DKL-GP-Option-Pricing/
 ├── requirements.txt
 └── .gitignore
 
-🚀 Installation
+
+
+# 🚀 Installation
 git clone https://github.com/Xavierlili/Two-Stage-DKL-GP-Option-Pricing.git
 cd Two-Stage-DKL-GP-Option-Pricing
 pip install -r requirements.txt
