@@ -100,6 +100,7 @@ Two-Stage-DKL-GP-Option-Pricing/
 ├── LICENSE
 ├── requirements.txt
 └── .gitignore
+---
 
 # 🚀 Installation
 git clone https://github.com/Xavierlili/Two-Stage-DKL-GP-Option-Pricing.git
