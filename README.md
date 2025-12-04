@@ -79,30 +79,130 @@ Avoids look-ahead bias inherent in financial time series.
 No Colab noise. Ready for academic or production usage.
 
 ---
+
 # 📁 Project Structure
 
 ```text
 Two-Stage-DKL-GP-Option-Pricing/
 │
 ├── src/
-│   └── iv_dkl_pipeline.py          # Main training pipeline
+│   └── iv_dkl_pipeline.py            # Main training pipeline
 │
 ├── data/
-│   └── SPX500.csv                  # Underlying options dataset (not included)
+│   └── SPX500.csv                    # Underlying options dataset (not included)
 │
 ├── paper/
-│   └── CN39523dissertation.pdf     # Full dissertation
+│   └── CN39523dissertation.pdf       # Full dissertation
 │
-├── results/                        # Training curves, figures, metrics
+├── results/                          # Training curves, figures, metrics
 │
-├── notebooks/                      # (Optional) Colab / Jupyter notebooks
+├── notebooks/                        # (Optional) Colab / Jupyter notebooks
 │
 ├── README.md
 ├── LICENSE
 ├── requirements.txt
 └── .gitignore
+```
+
+---
 
 # 🚀 Installation
+
+```bash
 git clone https://github.com/Xavierlili/Two-Stage-DKL-GP-Option-Pricing.git
 cd Two-Stage-DKL-GP-Option-Pricing
 pip install -r requirements.txt
+```
+
+---
+
+# 📊 Usage
+
+Train both stages (IV → price model):
+
+```bash
+python src/iv_dkl_pipeline.py \
+    --data-path data/SPX500.csv \
+    --results-dir results/
+```
+
+**What this does:**
+- Loads & preprocesses option data  
+- Trains Stage 1 DKL-GP implied volatility model  
+- Generates IV predictions for all samples  
+- Trains Stage 2 DKL-GP price model  
+- Saves metrics to `results/metrics_summary.csv`
+
+---
+
+# 📈 Results
+
+### **Mean Absolute Error (MAE)**
+
+| Model                        | Validation MAE | Test MAE |
+|------------------------------|----------------|----------|
+| Stage 1 — Implied Volatility | —              | 0.0126   |
+| Stage 2 — Price Model        | 6.95           | 7.86     |
+
+### **Root Mean Squared Error (RMSE)**
+
+| Model                        | Validation RMSE | Test RMSE |
+|------------------------------|------------------|-----------|
+| Stage 1 — Implied Volatility | —                | 0.0249    |
+| Stage 2 — Price Model        | 22.93            | 19.85     |
+
+### **R² Scores**
+
+| Model                        | Validation R² | Test R² |
+|------------------------------|---------------|---------|
+| Stage 1 — Implied Volatility | —             | 96.83%  |
+| Stage 2 — Price Model        | 0.998         | 0.998   |
+
+These results are taken from the dissertation’s full analysis.  
+The two-stage DKL+GP pipeline achieves **near-perfect generalization**.
+
+---
+
+# 🧩 Method Details
+
+### Features include:
+- Strike / moneyness / log-moneyness  
+- Time to maturity (T)  
+- Underlying index (SPX)  
+- Risk-free rate  
+- Call/put flag  
+- Predicted IV from Stage 1  
+
+### Why two stages?
+- IV surface is smooth → easier to learn  
+- Stage 2 becomes more stable & accurate  
+- Less noise, better regularization  
+
+### Why Deep Kernel Learning + Gaussian Process?
+- MLP captures nonlinear structure  
+- GP gives calibrated Bayesian uncertainty  
+- Variational inference scales GP to large datasets  
+
+---
+
+# 📑 Citation
+
+```bibtex
+@misc{two_stage_dkl_gp_2025,
+  author       = {Xavier Li},
+  title        = {Two-Stage Deep Kernel Learning + Gaussian Process for S\&P 500 Option Pricing},
+  year         = {2025},
+  howpublished = {\url{https://github.com/Xavierlili/Two-Stage-DKL-GP-Option-Pricing}},
+}
+```
+
+---
+
+# 🙌 Acknowledgements
+
+- GPyTorch  
+- PyTorch  
+- Gaussian Process literature  
+- Deep Kernel Learning framework  
+
+---
