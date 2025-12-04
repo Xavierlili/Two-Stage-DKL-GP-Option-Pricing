@@ -1,6 +1,3 @@
-# Two-Stage-DKL-GP-Option-Pricing
-Deep Kernel Learning + Gaussian Process pipeline for S&amp;P 500 option pricing (two-stage IV + price model).
-
 <div align="center">
 
 # **Two-Stage Deep Kernel Learning + Gaussian Process for S&P 500 Option Pricing**
@@ -30,3 +27,14 @@ The architecture leverages:
 
 # 📐 Model Architecture
 
+                    ┌──────────────────────┐
+                    │  Stage 1: IV Model   │
+                    │  (DKL + GP)          │
+                    └──────────┬───────────┘
+                               │  predicts IV_hat
+                               ▼
+                    ┌──────────────────────┐
+                    │ Stage 2: Price Model │
+                    │ (DKL + GP using      │
+                    │  IV_hat + features)  │
+                    └──────────────────────┘
